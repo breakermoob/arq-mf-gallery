@@ -12,14 +12,14 @@
       },
       "root": "",
       "sourceRoot": "src",
-      "prefix": "app",
+      "prefix": "microfrontends",
       "architect": {
         "build": {
-          "builder": "@angular-devkit/build-angular:browser",
+          "builder": "@angular-builders/custom-webpack:browser",
           "options": {
             "outputPath": "dist/mf-gallery",
             "index": "src/index.html",
-            "main": "src/main.ts",
+            "main": "src/main.single-spa.ts",
             "polyfills": "src/polyfills.ts",
             "tsConfig": "tsconfig.app.json",
             "aot": true,
@@ -30,7 +30,12 @@
             "styles": [
               "src/styles.scss"
             ],
-            "scripts": []
+            "scripts": [],
+            "customWebpackConfig": {
+              "path": "extra-webpack.config.js",
+              "libraryName": "mf-gallery",
+              "libraryTarget": "umd"
+            }
           },
           "configurations": {
             "production": {
@@ -41,7 +46,7 @@
                 }
               ],
               "optimization": true,
-              "outputHashing": "all",
+              "outputHashing": "none",
               "sourceMap": false,
               "extractCss": true,
               "namedChunks": false,
@@ -64,7 +69,7 @@
           }
         },
         "serve": {
-          "builder": "@angular-devkit/build-angular:dev-server",
+          "builder": "@angular-builders/custom-webpack:dev-server",
           "options": {
             "browserTarget": "mf-gallery:build"
           },
@@ -123,6 +128,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "mf-gallery"
+    }
+  },
+  "defaultProject": "mf-gallery",
+  "cli": {
+    "analytics": "30ae50b3-9883-474d-b07b-a1c4b641c1fa"
+  }
 }

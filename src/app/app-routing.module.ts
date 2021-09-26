@@ -1,10 +1,11 @@
 import { APP_BASE_HREF } from "@angular/common";
 import { NgModule } from "@angular/core";
 import { Routes, RouterModule } from "@angular/router";
-import { DefaultComponent } from "./prueba/default/default.component";
+import { AppComponent } from "./app.component";
 
 const routes: Routes = [
-  { path: "", component: DefaultComponent }
+  { path: "", component: AppComponent },
+  { path: "detalles/:keyName", component: AppComponent }
 ];
 
 @NgModule({
